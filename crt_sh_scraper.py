@@ -5,7 +5,13 @@ import sys
 
 
 def make_request(target):
-    params = {'q':target}
+    #group by issuer make it faster in case of huge response
+    params = {
+        'q':target,
+        'dir':'^',
+        'sort': '1', 
+        'group':'icaid'
+        }
     req = requests.get('https://crt.sh', params=params)
     return req.text
 
